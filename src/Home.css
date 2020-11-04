@@ -1,0 +1,24 @@
+.home_container {
+  text-align: center;
+}
+.home_container > h1 {
+  color: #ffe301;
+}
+.planet_list_container {
+  display: grid;
+  width: 70%;
+  margin: 3rem auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.planet_list_container > a {
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .planet_list_container {
+    width: 100%;
+  }
+}
