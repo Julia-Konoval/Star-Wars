@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
+import "./PlanetInfo.css";
 import axios from "axios";
 
 function PlanetInfo() {
@@ -54,6 +55,20 @@ function PlanetInfo() {
           <span>Population</span>
           {planet.population}
         </p>
+      </div>
+      <h2>Famous Residents</h2>
+      <div className="resident_container">
+        {planetResidents.length === 0 ? (
+          <p style={{ color: "red", textAlign: "center" }}>
+            No Famous Residents
+          </p>
+        ) : (
+          planetResidents.map((resident, index) => (
+            <p className="resident" key={index}>
+              {resident.name}
+            </p>
+          ))
+        )}
       </div>
     </div>
   );
