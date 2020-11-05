@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Planet from "./Planet";
+import Spinner from "./Spinner";
 import "./Home.css";
 
 function Home() {
@@ -23,9 +24,11 @@ function Home() {
           break;
         }
       }
-      console.log(results);
-      setPlanets(results);
-      console.log(planets);
+
+      const filteredPlanets = results.filter(
+        (result) => result.name !== "unknown"
+      );
+      setPlanets(filteredPlanets);
     }
 
     fetchData();
@@ -33,12 +36,16 @@ function Home() {
   return (
     <div className="home_container">
       <h1>Star Wars Planets</h1>
-      <div className="planet_list_container">
-        {planets &&
-          planets.map((planet, index) => (
-            <Planet planet={planet} key={index} />
-          ))}
-      </div>
+      {planets.length === 0 ? (
+        <Spinner />
+      ) : (
+        <div className="planet_list_container">
+          {planets &&
+            planets.map((planet, index) => (
+              <Planet planet={planet} key={index} />
+            ))}
+        </div>
+      )}
     </div>
   );
 }
